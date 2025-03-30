@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqxal75x5yey0"]
+
+[ext_resource type="Script" path="res://resource/scenes/my_bag/bag_manager.gd" id="2_iscwm"]
+[ext_resource type="PackedScene" uid="uid://cubfyfclpisd8" path="res://resource/scenes/player/player.tscn" id="2_lvf1d"]
+
+[node name="main" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("2_lvf1d")]
+unique_name_in_owner = true
+position = Vector2(277, 228)
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="BagManager" type="Control" parent="UI"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_iscwm")
+
+[node name="Bag" type="MarginContainer" parent="UI/BagManager"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="GridContainer" type="GridContainer" parent="UI/BagManager/Bag"]
+unique_name_in_owner = true
+layout_mode = 2
+columns = 2
+
+[node name="Button" type="Button" parent="UI"]
+offset_left = 178.0
+offset_top = 104.0
+offset_right = 216.0
+offset_bottom = 134.0
+text = "add
+"
+
+[node name="Button2" type="Button" parent="UI"]
+offset_left = 376.0
+offset_top = 100.0
+offset_right = 418.0
+offset_bottom = 130.0
+text = "dete
+"
+
+[connection signal="pressed" from="UI/Button" to="UI/BagManager" method="_on_button_pressed"]
+[connection signal="pressed" from="UI/Button2" to="UI/BagManager" method="_on_button_2_pressed"]
