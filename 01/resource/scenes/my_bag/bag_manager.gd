@@ -5,53 +5,61 @@ extends Control
 
 
 func _ready() -> void:
-	Glo.connect("get_slot_index",index)
+	Glo.connect("get_slot_index",index0)
 	show_slot()
 	equip_init()
-func equip_init():
-	if Glo.inv.equip_wepon:%wepon.texture = Glo.inv.equip_wepon[0].texture
-	if Glo.inv.equip_cloth:%cloth.texture = Glo.inv.equip_cloth[0].texture
-	if Glo.inv.equip_shoe:%shoe.texture = Glo.inv.equip_shoe[0].texture
-	if Glo.inv.equip_helmet:%header.texture = Glo.inv.equip_helmet[0].texture
 	
+func equip_init():
+	if Glo.inv.equip_wepon:
+		%wepon.texture = Glo.inv.equip_wepon[0].texture
+	if Glo.inv.equip_cloth:
+		%cloth.texture = Glo.inv.equip_cloth[0].texture
+	if Glo.inv.equip_shoe:
+		%shoe.texture = Glo.inv.equip_shoe[0].texture
+	if Glo.inv.equip_helmet:
+		%header.texture = Glo.inv.equip_helmet[0].texture
 	
 
-func index(index:int):
+func index0(index:int):
 		print(index," ",Glo.inv.bag_array[index].name)
 		
 		var a:ItemData=Glo.inv.bag_array[index]
 		
 		var b:String=a.type0_check(a)#获取类型
-		#Glo.inv.detele_index(index)  ?
+		
+
 		if b=="WEAPON" :
-			Glo.inv.add_equipment("wepon",a)
 			if %wepon.texture == null:
+				Glo.inv.add_equipment("wepon",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_wepon:
 				%wepon.texture = Glo.inv.equip_wepon[0].texture
-				Glo.inv.equip_wepon.resize(1)
+			
+			
 		if b=="CLOTH" :
-			Glo.inv.add_equipment("cloth",a)
+			
 			if %cloth.texture == null:
+				Glo.inv.add_equipment("cloth",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_cloth:
 				%cloth.texture = Glo.inv.equip_cloth[0].texture
-				Glo.inv.equip_cloth.resize(1)
+
+			
 		if b=="SHOE" :
-			Glo.inv.add_equipment("shoe",a)
+			
 			if %shoe.texture == null:
+				Glo.inv.add_equipment("shoe",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_shoe:
 				%shoe.texture = Glo.inv.equip_shoe[0].texture
-				Glo.inv.equip_shoe.resize(1)
+
 		if b=="HELMET" :
-			Glo.inv.add_equipment("helmet",a)
+			
 			if %header.texture == null:
+				Glo.inv.add_equipment("helmet",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_helmet:
 				%header.texture = Glo.inv.equip_helmet[0].texture
-				Glo.inv.equip_helmet.resize(1)
-			
 		show_slot()
 		Glo._save()
 
@@ -74,14 +82,12 @@ func _on_button_pressed() -> void:
 	Glo.inv.add(load("res://resource/aseets/item/003.tres"))
 	Glo.inv.add(load("res://resource/aseets/item/005.tres"))
 
-	#Glo.inv.add_equip(load("res://resource/aseets/item/001.tres"))
 
 	show_slot()
 	Glo._save()
 
 func _on_button_2_pressed() -> void:
 	Glo.inv.detele(load("res://resource/aseets/item/001.tres"))
-	#Glo.inv.add_equip(load("res://resource/aseets/item/001.tres"))
 
 	show_slot()
 	Glo._save()
@@ -95,6 +101,7 @@ func _on_wepon_gui_input(event: InputEvent) -> void:
 				Glo.inv.add(item)
 				Glo.inv.detle_equipment("wepon",Glo.inv.equip_wepon[0])
 				%wepon.texture = null
+				Glo.inv.equip_wepon.clear()
 				show_slot()
 				Glo._save()
 func _on_cloth_gui_input(event: InputEvent) -> void:
@@ -105,6 +112,7 @@ func _on_cloth_gui_input(event: InputEvent) -> void:
 				Glo.inv.add(item)
 				Glo.inv.detle_equipment("cloth",Glo.inv.equip_cloth[0])
 				%cloth.texture = null
+				Glo.inv.equip_cloth.clear()
 				show_slot()
 				Glo._save()
 func _on_shoe_gui_input(event: InputEvent) -> void:
@@ -115,6 +123,7 @@ func _on_shoe_gui_input(event: InputEvent) -> void:
 				Glo.inv.add(item)
 				Glo.inv.detle_equipment("shoe",Glo.inv.equip_shoe[0])
 				%shoe.texture = null
+				Glo.inv.equip_shoe.clear()
 				show_slot()
 				Glo._save()
 func _on_header_gui_input(event: InputEvent) -> void:
@@ -125,5 +134,6 @@ func _on_header_gui_input(event: InputEvent) -> void:
 				Glo.inv.add(item)
 				Glo.inv.detle_equipment("helmet",Glo.inv.equip_helmet[0])
 				%header.texture = null
+				Glo.inv.equip_helmet.clear()
 				show_slot()
 				Glo._save()
