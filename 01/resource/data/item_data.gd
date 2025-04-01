@@ -18,6 +18,10 @@ enum EquipType{
 
 @export_category("type")
 @export var type:EquipType =EquipType.NONE
+@export var hp:float
+@export var mp:float
+@export var attack:float
+@export var defence:float
 
 
 

@@ -13,3 +13,7 @@ name = "004"
 descripition = "004"
 texture = SubResource("AtlasTexture_q3x5r")
 type = 4
+hp = 10.0
+mp = 0.0
+attack = 10.0
+defence = 5.0

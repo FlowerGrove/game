@@ -10,6 +10,12 @@ func _ready() -> void:
 	equip_init()
 	
 func equip_init():
+	
+	%hp.text = "HP:" + str(Glo.inv.equip_wepon[0].hp+Glo.inv.equip_cloth[0].hp+Glo.inv.equip_shoe[0].hp+Glo.inv.equip_helmet[0].hp) 
+	%mp.text =  "MP:" + str(Glo.inv.equip_wepon[0].mp+Glo.inv.equip_cloth[0].mp+Glo.inv.equip_shoe[0].mp+Glo.inv.equip_helmet[0].mp)
+	%attack.text = "攻击:" +str(Glo.inv.equip_wepon[0].attack+Glo.inv.equip_cloth[0].attack+Glo.inv.equip_shoe[0].attack+Glo.inv.equip_helmet[0].attack)
+	%defence.text ="防御:"+str(Glo.inv.equip_wepon[0].defence+Glo.inv.equip_cloth[0].defence+Glo.inv.equip_shoe[0].defence+Glo.inv.equip_helmet[0].defence)
+	
 	if Glo.inv.equip_wepon:
 		%wepon.texture = Glo.inv.equip_wepon[0].texture
 	if Glo.inv.equip_cloth:
@@ -24,37 +30,26 @@ func index0(index:int):
 		print(index," ",Glo.inv.bag_array[index].name)
 		
 		var a:ItemData=Glo.inv.bag_array[index]
-		
 		var b:String=a.type0_check(a)#获取类型
-		
-
 		if b=="WEAPON" :
 			if %wepon.texture == null:
 				Glo.inv.add_equipment("wepon",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_wepon:
 				%wepon.texture = Glo.inv.equip_wepon[0].texture
-			
-			
 		if b=="CLOTH" :
-			
 			if %cloth.texture == null:
 				Glo.inv.add_equipment("cloth",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_cloth:
 				%cloth.texture = Glo.inv.equip_cloth[0].texture
-
-			
 		if b=="SHOE" :
-			
 			if %shoe.texture == null:
 				Glo.inv.add_equipment("shoe",a)
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_shoe:
 				%shoe.texture = Glo.inv.equip_shoe[0].texture
-
 		if b=="HELMET" :
-			
 			if %header.texture == null:
 				Glo.inv.add_equipment("helmet",a)
 				Glo.inv.detele_index(index)

@@ -7,7 +7,7 @@ extends MarginContainer
 func show_bag_information(item:ItemData) -> void:
 	texture_rect.texture = item.texture
 	
-	tooltip_text = "%s\n%s\n%s" %[item.name,item.descripition,item.type0_check(item)]
+	tooltip_text = "name:%s\ntips:%s\ntype:%s\nhp:%s\nmp:%s\nattack:%s\ndefence:%s" %[item.name,item.descripition,item.type0_check(item),item.hp,item.mp,item.attack,item.defence]
 	
 
 

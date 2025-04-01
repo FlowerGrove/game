@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://bqxal75x5yey0"]
+[gd_scene load_steps=5 format=3 uid="uid://bqxal75x5yey0"]
 
 [ext_resource type="Script" path="res://resource/scenes/my_bag/bag_manager.gd" id="2_iscwm"]
 [ext_resource type="PackedScene" uid="uid://cubfyfclpisd8" path="res://resource/scenes/player/player.tscn" id="2_lvf1d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qpvyr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02ctj"]
+bg_color = Color(0.898039, 0.960784, 0.0823529, 1)
 
 [node name="main" type="Node2D"]
 
@@ -59,9 +64,72 @@ layout_mode = 2
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer2" type="MarginContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer"]
+[node name="MarginContainer5" type="MarginContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_right = 10
+
+[node name="MarginContainer2" type="VBoxContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5"]
 layout_mode = 2
 size_flags_vertical = 3
+
+[node name="Label" type="HBoxContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5/MarginContainer2"]
+layout_mode = 2
+
+[node name="hp" type="Label" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5/MarginContainer2/Label"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "HP："
+
+[node name="mp" type="Label" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5/MarginContainer2/Label"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "MP："
+
+[node name="Label2" type="HBoxContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5/MarginContainer2"]
+layout_mode = 2
+
+[node name="attack" type="Label" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5/MarginContainer2/Label2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "攻击："
+
+[node name="defence" type="Label" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer5/MarginContainer2/Label2"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "防御："
+
+[node name="MarginContainer4" type="MarginContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer4"]
+layout_mode = 2
+
+[node name="Control2" type="Label" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer"]
+custom_minimum_size = Vector2(5, 0)
+layout_mode = 2
+text = "经验"
+
+[node name="MarginContainer" type="MarginContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 10
+
+[node name="Label3" type="ProgressBar" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer/MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/background = SubResource("StyleBoxFlat_qpvyr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_02ctj")
+step = 10.0
+value = 20.0
+
+[node name="Control" type="Control" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer4/HBoxContainer"]
+layout_mode = 2
 
 [node name="MarginContainer3" type="MarginContainer" parent="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
