@@ -1,12 +1,19 @@
-[gd_resource type="Resource" script_class="InventoryData" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="InventoryData" load_steps=7 format=3 uid="uid://cqgsl5f5gvoeu"]
 
 [ext_resource type="Script" path="res://resource/data/item_data.gd" id="1_3bd28"]
-[ext_resource type="Resource" path="res://resource/aseets/item/002.tres" id="2_bhdwt"]
+[ext_resource type="Resource" uid="uid://c8166h1qv2xso" path="res://resource/aseets/item/001.tres" id="2_fdb7l"]
 [ext_resource type="Script" path="res://resource/data/inventory.gd" id="2_upx1s"]
-[ext_resource type="Resource" path="res://resource/aseets/item/001.tres" id="3_akwej"]
+[ext_resource type="Resource" uid="uid://dysk1nywllh7c" path="res://resource/aseets/item/002.tres" id="3_f23e1"]
+[ext_resource type="Resource" uid="uid://xxw74gwn8rsp" path="res://resource/aseets/item/004.tres" id="4_h2hbw"]
+[ext_resource type="Resource" uid="uid://bcg0bfcno8rxj" path="res://resource/aseets/item/003.tres" id="5_kdpln"]
 
 [resource]
 script = ExtResource("2_upx1s")
 player_pos = Vector2(641.968, 230.961)
 name = "仓库"
-bag_array = Array[ExtResource("1_3bd28")]([ExtResource("2_bhdwt"), ExtResource("3_akwej")])
+bag_array = Array[ExtResource("1_3bd28")]([])
+equip_array = Array[ExtResource("1_3bd28")]([])
+equip_wepon = Array[ExtResource("1_3bd28")]([ExtResource("2_fdb7l")])
+equip_cloth = Array[ExtResource("1_3bd28")]([ExtResource("3_f23e1")])
+equip_shoe = Array[ExtResource("1_3bd28")]([ExtResource("5_kdpln")])
+equip_helmet = Array[ExtResource("1_3bd28")]([ExtResource("4_h2hbw")])

@@ -8,4 +8,5 @@ script = ExtResource("1_lurwk")
 name = "002"
 descripition = "002"
 texture = ExtResource("2_gs6p0")
+type = 2
 metadata/_custom_type_script = "uid://bgcbvd77r2syg"

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://bcg0bfcno8rxj"]
+
+[ext_resource type="Script" path="res://resource/data/item_data.gd" id="1_q1p58"]
+[ext_resource type="Texture2D" uid="uid://dxcl0x2su4jg3" path="res://icon.svg" id="2_isdwm"]
+
+[resource]
+script = ExtResource("1_q1p58")
+name = "003"
+descripition = "003"
+texture = ExtResource("2_isdwm")
+type = 3
