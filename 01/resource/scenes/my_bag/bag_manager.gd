@@ -25,28 +25,32 @@ func index(index:int):
 		#Glo.inv.detele_index(index)  ?
 		if b=="WEAPON" :
 			Glo.inv.add_equipment("wepon",a)
+			if %wepon.texture == null:
+				Glo.inv.detele_index(index)
 			if Glo.inv.equip_wepon:
 				%wepon.texture = Glo.inv.equip_wepon[0].texture
 				Glo.inv.equip_wepon.resize(1)
-			else:Glo.inv.detele_index(index)
 		if b=="CLOTH" :
 			Glo.inv.add_equipment("cloth",a)
+			if %cloth.texture == null:
+				Glo.inv.detele_index(index)
 			if Glo.inv.equip_cloth:
 				%cloth.texture = Glo.inv.equip_cloth[0].texture
 				Glo.inv.equip_cloth.resize(1)
-			else:Glo.inv.detele_index(index)
 		if b=="SHOE" :
 			Glo.inv.add_equipment("shoe",a)
+			if %shoe.texture == null:
+				Glo.inv.detele_index(index)
 			if Glo.inv.equip_shoe:
 				%shoe.texture = Glo.inv.equip_shoe[0].texture
 				Glo.inv.equip_shoe.resize(1)
-			else:Glo.inv.detele_index(index)
 		if b=="HELMET" :
 			Glo.inv.add_equipment("helmet",a)
+			if %header.texture == null:
+				Glo.inv.detele_index(index)
 			if Glo.inv.equip_helmet:
 				%header.texture = Glo.inv.equip_helmet[0].texture
 				Glo.inv.equip_helmet.resize(1)
-			else:Glo.inv.detele_index(index)
 			
 		show_slot()
 		Glo._save()
@@ -81,3 +85,45 @@ func _on_button_2_pressed() -> void:
 
 	show_slot()
 	Glo._save()
+
+
+func _on_wepon_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT :
+			if Glo.inv.equip_wepon:
+				var item =Glo.inv.equip_wepon[0]
+				Glo.inv.add(item)
+				Glo.inv.detle_equipment("wepon",Glo.inv.equip_wepon[0])
+				%wepon.texture = null
+				show_slot()
+				Glo._save()
+func _on_cloth_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT :
+			if Glo.inv.equip_cloth:
+				var item =Glo.inv.equip_cloth[0]
+				Glo.inv.add(item)
+				Glo.inv.detle_equipment("cloth",Glo.inv.equip_cloth[0])
+				%cloth.texture = null
+				show_slot()
+				Glo._save()
+func _on_shoe_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT :
+			if Glo.inv.equip_shoe:
+				var item =Glo.inv.equip_shoe[0]
+				Glo.inv.add(item)
+				Glo.inv.detle_equipment("shoe",Glo.inv.equip_shoe[0])
+				%shoe.texture = null
+				show_slot()
+				Glo._save()
+func _on_header_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed():
+		if event.button_index == MOUSE_BUTTON_LEFT :
+			if Glo.inv.equip_helmet:
+				var item =Glo.inv.equip_helmet[0]
+				Glo.inv.add(item)
+				Glo.inv.detle_equipment("helmet",Glo.inv.equip_helmet[0])
+				%header.texture = null
+				show_slot()
+				Glo._save()

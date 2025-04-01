@@ -20,11 +20,12 @@ enum EquipType{
 @export var type:EquipType =EquipType.NONE
 
 
+
+
 func type0_check(item:ItemData) ->String:
 	match item.type:
 		EquipType.NONE:    
 			print("空类型")
-			#Glo.inv.add_equip(item)
 			return "NONE"
 		EquipType.WEAPON:
 			print("武器类型")

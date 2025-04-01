@@ -105,7 +105,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
-columns = 2
+columns = 5
 
 [node name="Button" type="Button" parent="UI"]
 offset_left = 178.0
@@ -123,5 +123,9 @@ offset_bottom = 130.0
 text = "dete
 "
 
+[connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/wepon" to="UI/BagManager" method="_on_wepon_gui_input"]
+[connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/cloth" to="UI/BagManager" method="_on_cloth_gui_input"]
+[connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/shoe" to="UI/BagManager" method="_on_shoe_gui_input"]
+[connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/header" to="UI/BagManager" method="_on_header_gui_input"]
 [connection signal="pressed" from="UI/Button" to="UI/BagManager" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Button2" to="UI/BagManager" method="_on_button_2_pressed"]
