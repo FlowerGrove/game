@@ -3,6 +3,7 @@ extends MarginContainer
 @onready var texture_rect: TextureRect = $TextureRect
 
 
+
 func show_bag_information(item:ItemData) -> void:
 	texture_rect.texture = item.texture
 	tooltip_text = "%s\n%s" %[item.name,item.descripition]

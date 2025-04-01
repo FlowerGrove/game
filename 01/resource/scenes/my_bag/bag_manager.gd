@@ -1,12 +1,18 @@
 extends Control
-
+#class_name BagManager
 
 @onready var button: Button = $"../Button"
 
 
 func _ready() -> void:
 	Glo.connect("get_slot_index",func index(index:int):
-		print(index," ",Glo.inv.bag_array[index].name))
+		print(index," ",Glo.inv.bag_array[index].name)
+		
+		Glo.inv.detele_index(index)
+		show_slot()
+		Glo._save()
+
+		)
 	show_slot()
 
 
@@ -26,7 +32,6 @@ func _on_button_pressed() -> void:
 	Glo.inv.add(load("res://resource/aseets/item/001.tres"))
 	show_slot()
 	Glo._save()
-
 
 func _on_button_2_pressed() -> void:
 	Glo.inv.detele(load("res://resource/aseets/item/001.tres"))
