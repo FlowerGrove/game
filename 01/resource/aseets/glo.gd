@@ -3,6 +3,9 @@ extends Node
 signal get_slot_index(index:int)
 
 
+
+var hp:float
+
 var inv=InventoryData.new()
 
 func  _load():

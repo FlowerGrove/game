@@ -10,11 +10,11 @@
 
 [resource]
 script = ExtResource("2_upx1s")
-player_pos = Vector2(651.361, 511.568)
+player_pos = Vector2(500.078, 230.14)
 name = "仓库"
-bag_array = Array[ExtResource("1_3bd28")]([ExtResource("6_nbvru"), ExtResource("5_jiqyi"), ExtResource("3_xgirk"), ExtResource("5_d6njh"), ExtResource("4_6u4co")])
+bag_array = Array[ExtResource("1_3bd28")]([ExtResource("6_nbvru"), ExtResource("3_xgirk"), ExtResource("5_d6njh"), ExtResource("4_6u4co"), ExtResource("5_jiqyi"), ExtResource("4_6u4co"), ExtResource("5_d6njh"), ExtResource("3_xgirk"), ExtResource("5_jiqyi")])
 equip_array = Array[ExtResource("1_3bd28")]([])
-equip_wepon = Array[ExtResource("1_3bd28")]([ExtResource("5_jiqyi")])
-equip_cloth = Array[ExtResource("1_3bd28")]([ExtResource("3_xgirk")])
-equip_shoe = Array[ExtResource("1_3bd28")]([ExtResource("5_d6njh")])
-equip_helmet = Array[ExtResource("1_3bd28")]([ExtResource("4_6u4co")])
+equip_wepon = Array[ExtResource("1_3bd28")]([])
+equip_cloth = Array[ExtResource("1_3bd28")]([])
+equip_shoe = Array[ExtResource("1_3bd28")]([])
+equip_helmet = Array[ExtResource("1_3bd28")]([])

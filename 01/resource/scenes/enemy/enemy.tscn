@@ -1,0 +1,46 @@
+[gd_scene load_steps=7 format=3 uid="uid://qma5y6wgja7b"]
+
+[ext_resource type="Texture2D" uid="uid://dxcl0x2su4jg3" path="res://icon.svg" id="1_ekmkr"]
+[ext_resource type="Script" path="res://resource/scenes/enemy/enemy.gd" id="1_rkb84"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpjqq"]
+size = Vector2(61, 60)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fly38"]
+radius = 150.403
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kbrsr"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f4uet"]
+bg_color = Color(0.913725, 0.0470588, 0.0431373, 0.917647)
+
+[node name="enemy" type="CharacterBody2D"]
+script = ExtResource("1_rkb84")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.505, 0.505)
+texture = ExtResource("1_ekmkr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_mpjqq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_fly38")
+debug_color = Color(0.881457, 0.299079, 0.408754, 0.42)
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+visible = false
+offset_left = -46.0
+offset_top = -44.0
+offset_right = 49.0
+offset_bottom = -38.0
+theme_override_styles/background = SubResource("StyleBoxFlat_kbrsr")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f4uet")
+value = 10.0
+show_percentage = false
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]

@@ -4,13 +4,16 @@ class_name  InventoryData
 
 #定义存储的东西
 @export var player_pos:Vector2
+#@export var Player_pos
+
 
 @export var name:String= ""
 @export var bag_array:Array[ItemData] = []
 
+##背包槽
 @export var equip_array:Array[ItemData] = []
 
-
+##武器槽
 @export var equip_wepon:Array[ItemData] = []
 @export var equip_cloth:Array[ItemData] = []
 @export var equip_shoe:Array[ItemData] = []
