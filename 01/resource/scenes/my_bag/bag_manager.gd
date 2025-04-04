@@ -2,6 +2,10 @@ extends Control
 class_name BagManager
 
 @onready var button: Button = $"../Button"
+#var player_hp:
+	#set(v):
+		#if v==0:
+			#return 0
 
 func _ready() -> void:
 	Glo.connect("get_slot_index",index0)
@@ -58,16 +62,21 @@ func equip_init():
 		Glo2.attack4=0
 		Glo2.defence4=0
 	
+	var player_hp =Glo2.hp1+Glo2.hp2+Glo2.hp3+Glo2.hp4+Glo2.current_hp
+	var player_mp = Glo2.mp1+Glo2.mp2+Glo2.mp3+Glo2.mp4+Glo2.current_mp
+	var player_attack = Glo2.attack1+Glo2.attack2+Glo2.attack3+Glo2.attack4
+	var player_defence =Glo2.defence1+Glo2.defence2+Glo2.defence3+Glo2.defence4
 	
-	%hp.text = "HP:" +str(Glo2.hp1+Glo2.hp2+Glo2.hp3+Glo2.hp4+Glo2.current_hp)
-	%mp.text = "MP:" +str(Glo2.mp1+Glo2.mp2+Glo2.mp3+Glo2.mp4+Glo2.current_mp)
-	%attack.text= "攻击:" +str(Glo2.attack1+Glo2.attack2+Glo2.attack3+Glo2.attack4)
-	%defence.text="防御:" +str(Glo2.defence1+Glo2.defence2+Glo2.defence3+Glo2.defence4)
-	Glo2.player_attr.emit((Glo2.hp1+Glo2.hp2+Glo2.hp3+Glo2.hp4+Glo2.current_hp)\
-						,(Glo2.mp1+Glo2.mp2+Glo2.mp3+Glo2.mp4+Glo2.current_mp)\
-						,(Glo2.attack1+Glo2.attack2+Glo2.attack3+Glo2.attack4)\
-						,(Glo2.defence1+Glo2.defence2+Glo2.defence3+Glo2.defence4))
-
+	Glo.inv.player_attr_dic.hp = player_hp
+	Glo.inv.player_attr_dic.mp = player_mp
+	Glo.inv.player_attr_dic.max_hp = Glo2.hp1+Glo2.hp2+Glo2.hp3+Glo2.hp4+Glo2.max_hp
+	Glo.inv.player_attr_dic.max_mp = Glo2.mp1+Glo2.mp2+Glo2.mp3+Glo2.mp4+Glo2.max_mp
+	
+	%hp.text = "HP:" +str(player_hp)
+	%mp.text = "MP:" +str(player_mp)
+	%attack.text= "攻击:" +str(player_attack)
+	%defence.text="防御:" +str(player_defence)
+	Glo2.a.emit(true)
 
 
 ##装备到装备槽
@@ -98,10 +107,11 @@ func index0(index:int):
 				Glo.inv.detele_index(index)
 			if Glo.inv.equip_helmet:
 				%header.texture = Glo.inv.equip_helmet[0].texture
-		
 		show_slot()
 		Glo._save()
 		equip_init()
+		
+
 
 ##显示纹理
 func show_slot():
@@ -142,7 +152,6 @@ func _on_wepon_gui_input(event: InputEvent) -> void:
 				%wepon.texture = null
 				Glo.inv.equip_wepon.clear()
 				show_slot()
-				#player_type()
 				Glo._save()
 				equip_init()
 func _on_cloth_gui_input(event: InputEvent) -> void:
@@ -155,7 +164,6 @@ func _on_cloth_gui_input(event: InputEvent) -> void:
 				%cloth.texture = null
 				Glo.inv.equip_cloth.clear()
 				show_slot()
-				#player_type()
 				Glo._save()
 				equip_init()
 func _on_shoe_gui_input(event: InputEvent) -> void:
@@ -168,7 +176,6 @@ func _on_shoe_gui_input(event: InputEvent) -> void:
 				%shoe.texture = null
 				Glo.inv.equip_shoe.clear()
 				show_slot()
-				#player_type()
 				Glo._save()
 				equip_init()
 func _on_header_gui_input(event: InputEvent) -> void:
@@ -181,6 +188,5 @@ func _on_header_gui_input(event: InputEvent) -> void:
 				%header.texture = null
 				Glo.inv.equip_helmet.clear()
 				show_slot()
-				#player_type()
 				Glo._save()
 				equip_init()

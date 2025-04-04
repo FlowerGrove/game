@@ -19,6 +19,14 @@ class_name  InventoryData
 @export var equip_shoe:Array[ItemData] = []
 @export var equip_helmet:Array[ItemData] = []
 
+##属性
+@export var player_attr_dic:Dictionary={
+	"hp":0.0,
+	"mp":0.0,
+	"max_hp":0.0,
+	"max_mp":0.0
+}
+
 
 func add_equipment(type:String,item:ItemData):
 	match type:

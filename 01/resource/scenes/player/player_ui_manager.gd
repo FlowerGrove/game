@@ -1,21 +1,32 @@
 extends Control
+class_name PlayerUiManager
 
-var enemy_damage=0
 func _ready() -> void:
-	Glo2.connect("player_attr",player_attr)
+	Glo2.a.connect(func (a:bool):if a:show_blood())
 	Glo2.connect("hit_player",hit_player)
+	show_blood()
 	
 func hit_player(damage:float):
-	enemy_damage = damage
-	
-	print(enemy_damage)
+	Glo.inv.player_attr_dic.hp -= damage
+	Glo._save()
+	show_blood()
+	Glo2.b.emit(Glo.inv.player_attr_dic.hp)
 
-func player_attr(hp,mp,attack,defence):
-	#hp为装备属性+人物基础属性
+
+
+func show_blood():
+	%HPShow.text = ""
+	%MPShow.text = ""
 	
-	%HPShow.text = "HP:"+str(hp-enemy_damage)+"/%s" % [Glo2.hp1+Glo2.hp2+Glo2.hp3+Glo2.hp4+Glo2.max_hp]
-	%MPShow.text = "MP:"+str(mp)+"/%s" % [Glo2.mp1+Glo2.mp2+Glo2.mp3+Glo2.mp4+Glo2.max_mp]
-	%HPProgressBar.max_value = hp-Glo2.current_hp+Glo2.max_hp
-	%MPProgressBar.max_value = mp-Glo2.current_mp+Glo2.max_mp
-	%HPProgressBar.value = hp
-	%MPProgressBar.value =  mp
+	var  inv = Glo._load()
+	if inv.player_attr_dic.hp >=0:
+		%HPShow.text = str(inv.player_attr_dic.hp)
+		%HPProgressBar.max_value = inv.player_attr_dic.max_hp
+		%HPProgressBar.value = inv.player_attr_dic.hp
+	else: return
+	if inv.player_attr_dic.mp >=0:
+		%MPShow.text = str(inv.player_attr_dic.mp)
+		%MPProgressBar.max_value = inv.player_attr_dic.max_mp
+		%MPProgressBar.value =  inv.player_attr_dic.mp
+	else: return
+	

@@ -343,3 +343,5 @@ text = "dete
 [connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/header" to="UI/BagManager" method="_on_header_gui_input"]
 [connection signal="pressed" from="UI/Button" to="UI/BagManager" method="_on_button_pressed"]
 [connection signal="pressed" from="UI/Button2" to="UI/BagManager" method="_on_button_2_pressed"]
+
+[editable path="Player"]

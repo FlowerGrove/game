@@ -1,10 +1,9 @@
 extends Node
 
-signal player_attr(hp:float,mp:float,attack:float,defence:float)
 signal hit_player(damage:float)
 signal hit_enemy(damage:float)
-
-
+signal a(a:bool)
+signal b(b:float)
 
 
 var hp1
@@ -25,6 +24,7 @@ var defence3
 var defence4
 var max_hp :float = 50
 var max_mp:float = 20
+
 var current_hp:float = max_hp:
 	set(value):
 		current_hp = value
