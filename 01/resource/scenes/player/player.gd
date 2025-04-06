@@ -44,6 +44,7 @@ func _physics_process(_delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	pass
+	Glo2.hit_enemy.emit(10)
 	#print(area.owner.name)
 	
 

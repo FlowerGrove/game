@@ -3,9 +3,19 @@ class_name  Enemy
 @onready var player: Player = %Player
 
 @export var SPEED = 70.0
+@export var enemy_hp = 50
+
 
 var flag = false
 func _ready() -> void:
+	Glo2.hit_enemy.connect(func(a):
+		if enemy_hp>0:
+			%ProgressBar.max_value = 50
+			enemy_hp -=a
+			%ProgressBar.value = enemy_hp
+		else:return enemy_hp
+			#self.queue_free()
+		)
 	mon_init()
 	$ProgressBar.visible =false
 
@@ -14,6 +24,10 @@ func mon_init():
 	self.rotation= 0
 
 func _physics_process(delta: float) -> void:
+	if !enemy_hp>0:
+		%anim.play("die")
+		 
+		self.queue_free()##判断死亡
 	if flag:
 		velocity = position.direction_to(player.position) * SPEED
 		%anim.play("run")
