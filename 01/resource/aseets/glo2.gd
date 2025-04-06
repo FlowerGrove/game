@@ -1,7 +1,7 @@
 extends Node
 
 signal hit_player(damage:float)
-signal hit_enemy(damage:float)
+#signal hit_enemy(damage:float)
 signal a(a:bool)
 signal b(b:float)
 
