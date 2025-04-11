@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>诗词导航</title>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <!-- PWA支持 -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#3498db">
+    <link rel="apple-touch-icon" href="assets/icons/logo192.png">
+</head>
+<body class="theme-blue">
+    <!-- 浮动时间窗口 -->
+    <div class="floating-time">
+        <div class="floating-time-content">
+            <div class="floating-current-time">
+                <!-- 内容会由JS动态生成 -->
+            </div>
+        </div>
+        <div class="close-floating-time"><i class="fas fa-times"></i></div>
+    </div>
+
+    <!-- 打开浮动时间窗口按钮 -->
+    <button class="floating-time-toggle-btn hidden">
+        <i class="fas fa-clock"></i>
+    </button>
+
+    <div class="container">
+        <header>
+            <h1 class="poetry-title">独立寒秋，湘江北去，橘子洲头</h1>
+            <p class="poetry-author">— 毛泽东《沁园春·长沙》</p>
+            
+            <div class="header-actions">
+                <!-- 收藏功能 -->
+                <button class="action-button favorites-btn" aria-label="收藏夹">
+                    <i class="fas fa-star"></i>
+                </button>
+                
+                <!-- 历史记录 -->
+                <button class="action-button history-btn" aria-label="历史记录">
+                    <i class="fas fa-history"></i>
+                </button>
+                
+                <!-- 设置按钮 -->
+                <button class="action-button settings-btn" aria-label="设置">
+                    <i class="fas fa-cog"></i>
+                </button>
+                
+                <!-- 主题切换 -->
+                <button class="theme-toggle" aria-label="切换主题">
+                    <i class="fas fa-moon"></i>
+                </button>
+            </div>
+        </header>
+        
+        <!-- 搜索框 -->
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="搜索网站..." aria-label="搜索网站">
+            <button class="search-button" aria-label="搜索">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        
+        <!-- 分类选择器 -->
+        <div class="category-selector"></div>
+        
+        <!-- 网站导航网格 -->
+        <nav class="nav-grid">
+            <!-- 网站将通过JS动态生成 -->
+        </nav>
+    </div>
+
+    <!-- 功能模态框 -->
+    <div class="modal" id="settings-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>设置</h3>
+                <button class="close-modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label for="background-select">背景样式</label>
+                    <select id="background-select">
+                        <option value="default">默认</option>
+                        <option value="gradient">渐变</option>
+                        <option value="particles">粒子</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="theme-select">主题颜色</label>
+                    <select id="theme-select">
+                        <option value="theme-blue">蓝色</option>
+                        <option value="theme-green">绿色</option>
+                        <option value="theme-purple">紫色</option>
+                        <option value="theme-red">红色</option>
+                        <option value="theme-orange">橙色</option>
+                        <option value="theme-teal">青色</option>
+                        <option value="theme-pink">粉色</option>
+                        <option value="theme-indigo">靛蓝</option>
+                        <option value="theme-cyan">蓝绿</option>
+                        <option value="theme-brown">棕色</option>
+                    </select>
+                </div>
+                <div class="setting-item">
+                    <label for="font-size">字体大小</label>
+                    <input type="range" id="font-size" min="12" max="20" value="16">
+                    <span id="font-size-value">16px</span>
+                </div>
+                <div class="setting-item">
+                    <label for="floating-time-toggle">浮动时间窗口</label>
+                    <label class="switch">
+                        <input type="checkbox" id="floating-time-toggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="save-settings">保存设置</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 脚本 -->
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/time-controller.js"></script>
+    
+    <!-- 注册 Service Worker -->
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function() {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function(registration) {
+                        console.log('Service Worker 注册成功:', registration.scope);
+                    })
+                    .catch(function(error) {
+                        console.log('Service Worker 注册失败:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html> 

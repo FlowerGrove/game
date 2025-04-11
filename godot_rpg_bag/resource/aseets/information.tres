@@ -10,7 +10,7 @@
 
 [resource]
 script = ExtResource("2_upx1s")
-player_pos = Vector2(168.404, 265.798)
+player_pos = Vector2(433.04, 444.828)
 name = "仓库"
 bag_array = Array[ExtResource("1_3bd28")]([ExtResource("6_nbvru"), ExtResource("3_xgirk"), ExtResource("5_d6njh"), ExtResource("4_6u4co"), ExtResource("5_jiqyi")])
 equip_array = Array[ExtResource("1_3bd28")]([])

@@ -25,16 +25,26 @@ func _exit_tree() -> void:
 	
 	
 
-
+var state:String = ""	
+var current_state:String = ""
 func _physics_process(_delta: float) -> void:
-	var SPEED = 300.0
+	var SPEED = 150.0
 	var direction = Input.get_vector("ui_left", "ui_right","ui_up","ui_down")
 	velocity = direction * SPEED
-	#if Input.is_action_just_pressed("click") and %BagManager.visible == false:
-		#var click_pos = get_global_mouse_position()
-		#print(click_pos)
-		#velocity = position.direction_to(click_pos) * SPEED
+	
+	if !direction == Vector2.ZERO:
+		state = "move"
+		$animi.play("walk")
+	else:
+		state = "idle"
+		$animi.play("idle")
+	
+	
+	
+	
 	move_and_slide()
+	
+	
 
 
 

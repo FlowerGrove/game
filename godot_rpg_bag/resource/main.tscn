@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://bqxal75x5yey0"]
+[gd_scene load_steps=17 format=3 uid="uid://bqxal75x5yey0"]
 
 [ext_resource type="Script" path="res://resource/main.gd" id="1_mjd3n"]
 [ext_resource type="Script" path="res://resource/scenes/player/player_ui_manager.gd" id="2_htfal"]
 [ext_resource type="Script" path="res://resource/scenes/my_bag/bag_manager.gd" id="2_iscwm"]
 [ext_resource type="PackedScene" uid="uid://qma5y6wgja7b" path="res://resource/scenes/enemy/enemy.tscn" id="2_lrf40"]
 [ext_resource type="PackedScene" uid="uid://cubfyfclpisd8" path="res://resource/scenes/player/player.tscn" id="2_lvf1d"]
+[ext_resource type="Texture2D" uid="uid://0cl2bafbwra7" path="res://resource/aseets/image/MediavelFree.png" id="6_hgu0v"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_57ro5"]
 
@@ -20,6 +21,22 @@ bg_color = Color(0.0980392, 0.0666667, 0.917647, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_02ctj"]
 bg_color = Color(0.898039, 0.960784, 0.0823529, 1)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3gj7j"]
+atlas = ExtResource("6_hgu0v")
+region = Rect2(81, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vvyyr"]
+atlas = ExtResource("6_hgu0v")
+region = Rect2(81, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o48uk"]
+atlas = ExtResource("6_hgu0v")
+region = Rect2(81, 1, 14, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_egn3p"]
+atlas = ExtResource("6_hgu0v")
+region = Rect2(81, 1, 14, 14)
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_mjd3n")
@@ -38,6 +55,9 @@ position = Vector2(768, 142)
 [node name="Player" parent="." instance=ExtResource("2_lvf1d")]
 unique_name_in_owner = true
 position = Vector2(277, 228)
+
+[node name="animi" parent="Player" index="0"]
+frame = 0
 
 [node name="UI" type="CanvasLayer" parent="."]
 
@@ -329,22 +349,6 @@ theme_override_constants/h_separation = 4
 theme_override_constants/v_separation = 4
 columns = 5
 
-[node name="Button" type="Button" parent="UI"]
-offset_left = 178.0
-offset_top = 104.0
-offset_right = 216.0
-offset_bottom = 134.0
-text = "add
-"
-
-[node name="Button2" type="Button" parent="UI"]
-offset_left = 376.0
-offset_top = 100.0
-offset_right = 418.0
-offset_bottom = 130.0
-text = "dete
-"
-
 [node name="LevelManager" type="Control" parent="UI"]
 visible = false
 layout_mode = 3
@@ -426,11 +430,61 @@ text = "level1"
 layout_mode = 2
 text = "level1"
 
+[node name="ButtonManager" type="Control" parent="UI"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Button2" type="Button" parent="UI/ButtonManager"]
+layout_mode = 0
+offset_left = 376.0
+offset_top = 100.0
+offset_right = 418.0
+offset_bottom = 130.0
+text = "dete
+"
+
+[node name="Button" type="Button" parent="UI/ButtonManager"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 104.0
+offset_right = 216.0
+offset_bottom = 134.0
+text = "add
+"
+
+[node name="left" type="TouchScreenButton" parent="UI/ButtonManager"]
+position = Vector2(131, 533)
+rotation = 3.14159
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_3gj7j")
+action = "ui_left"
+
+[node name="right" type="TouchScreenButton" parent="UI/ButtonManager"]
+position = Vector2(196, 505)
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_vvyyr")
+action = "ui_right"
+
+[node name="up" type="TouchScreenButton" parent="UI/ButtonManager"]
+position = Vector2(151, 498)
+rotation = -1.5708
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_o48uk")
+action = "ui_up"
+
+[node name="down" type="TouchScreenButton" parent="UI/ButtonManager"]
+position = Vector2(178, 539)
+rotation = 1.5708
+scale = Vector2(2, 2)
+texture_normal = SubResource("AtlasTexture_egn3p")
+action = "ui_down"
+
 [connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/wepon" to="UI/BagManager" method="_on_wepon_gui_input"]
 [connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/cloth" to="UI/BagManager" method="_on_cloth_gui_input"]
 [connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/shoe" to="UI/BagManager" method="_on_shoe_gui_input"]
 [connection signal="gui_input" from="UI/BagManager/Bag/MarginContainer/MarginContainer/VBoxContainer/MarginContainer3/equip/header" to="UI/BagManager" method="_on_header_gui_input"]
-[connection signal="pressed" from="UI/Button" to="UI/BagManager" method="_on_button_pressed"]
-[connection signal="pressed" from="UI/Button2" to="UI/BagManager" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI/ButtonManager/Button2" to="UI/BagManager" method="_on_button_2_pressed"]
+[connection signal="pressed" from="UI/ButtonManager/Button" to="UI/BagManager" method="_on_button_pressed"]
 
 [editable path="Player"]

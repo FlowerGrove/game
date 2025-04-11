@@ -74,8 +74,8 @@ func equip_init():
 	
 	%hp.text = "HP:" +str(player_hp)
 	%mp.text = "MP:" +str(player_mp)
-	%attack.text= "攻击:" +str(player_attack)
-	%defence.text="防御:" +str(player_defence)
+	%attack.text= "attack:" +str(player_attack)
+	%defence.text="defence:" +str(player_defence)
 	Glo2.a.emit(true)
 
 

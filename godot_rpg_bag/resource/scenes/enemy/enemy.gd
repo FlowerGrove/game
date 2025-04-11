@@ -26,7 +26,7 @@ func mon_init():
 func _physics_process(delta: float) -> void:
 	if !enemy_hp>0:
 		%anim.play("die")
-		 
+		await get_tree().create_timer(1).timeout
 		self.queue_free()##判断死亡
 	if flag:
 		velocity = position.direction_to(player.position) * SPEED
