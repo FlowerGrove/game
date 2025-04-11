@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人主页</title>
+    <!-- Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="assets/css/styles.css">
+    <style>
+        /* 个人主页特定样式 */
+        .personal-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .profile-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 40px;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .profile-avatar {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-right: 30px;
+            border: 4px solid #fff;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .profile-info {
+            flex: 1;
+        }
+        
+        .profile-name {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .profile-bio {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .profile-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #777;
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: var(--primary-dark);
+            transform: translateX(-5px);
+        }
+        
+        .back-link i {
+            margin-right: 8px;
+        }
+        
+        .content-section {
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: #333;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+            font-weight: 600;
+        }
+        
+        .poem-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .poem-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .poem-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .poem-title {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .poem-author {
+            font-size: 0.9rem;
+            color: #777;
+            margin-bottom: 12px;
+        }
+        
+        .poem-content {
+            font-size: 0.95rem;
+            color: #555;
+            line-height: 1.8;
+            margin-bottom: 10px;
+            white-space: pre-line;
+        }
+        
+        .poem-date {
+            font-size: 0.8rem;
+            color: #999;
+            text-align: right;
+        }
+        
+        .collection-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 20px;
+        }
+        
+        .collection-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        
+        .collection-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .collection-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .collection-title {
+            font-size: 1rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .collection-count {
+            font-size: 0.8rem;
+            color: #777;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .profile-btn {
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: none;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .profile-btn i {
+            margin-right: 6px;
+        }
+        
+        .primary-btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        .primary-btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .secondary-btn {
+            background-color: #f1f1f1;
+            color: #333;
+        }
+        
+        .secondary-btn:hover {
+            background-color: #e5e5e5;
+        }
+        
+        @media (max-width: 768px) {
+            .profile-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .profile-avatar {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+            
+            .profile-stats {
+                justify-content: center;
+            }
+            
+            .profile-actions {
+                justify-content: center;
+            }
+            
+            .poem-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="theme-blue">
+    <div class="personal-container">
+        <a href="index.html" class="back-link">
+            <i class="fas fa-arrow-left"></i>返回主页
+        </a>
+        
+        <div class="profile-header">
+            <img src="https://via.placeholder.com/120" alt="用户头像" class="profile-avatar">
+            
+            <div class="profile-info">
+                <h1 class="profile-name">诗词爱好者</h1>
+                <p class="profile-bio">热爱中国古典诗词，喜欢在闲暇时光品味诗词之美。积累了丰富的诗词鉴赏经验，希望与大家分享交流。</p>
+                
+                <div class="profile-stats">
+                    <div class="stat-item">
+                        <div class="stat-value">42</div>
+                        <div class="stat-label">收藏作品</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">18</div>
+                        <div class="stat-label">原创作品</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">126</div>
+                        <div class="stat-label">阅读笔记</div>
+                    </div>
+                </div>
+                
+                <div class="profile-actions">
+                    <button class="profile-btn primary-btn">
+                        <i class="fas fa-pen"></i>编辑资料
+                    </button>
+                    <button class="profile-btn secondary-btn">
+                        <i class="fas fa-cog"></i>账号设置
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">我的原创</h2>
+            <div class="poem-grid">
+                <div class="poem-card">
+                    <h3 class="poem-title">山行</h3>
+                    <p class="poem-author">模仿杜牧</p>
+                    <div class="poem-content">远上寒山石径斜，
+白云深处有人家。
+停车坐爱枫林晚，
+霜叶红于二月花。</div>
+                    <p class="poem-date">2023-10-15</p>
+                </div>
+                
+                <div class="poem-card">
+                    <h3 class="poem-title">春晓</h3>
+                    <p class="poem-author">模仿孟浩然</p>
+                    <div class="poem-content">春眠不觉晓，
+处处闻啼鸟。
+夜来风雨声，
+花落知多少。</div>
+                    <p class="poem-date">2023-09-20</p>
+                </div>
+                
+                <div class="poem-card">
+                    <h3 class="poem-title">夜思</h3>
+                    <p class="poem-author">模仿李白</p>
+                    <div class="poem-content">床前明月光，
+疑是地上霜。
+举头望明月，
+低头思故乡。</div>
+                    <p class="poem-date">2023-08-17</p>
+                </div>
+                
+                <div class="poem-card">
+                    <h3 class="poem-title">登高</h3>
+                    <p class="poem-author">模仿杜甫</p>
+                    <div class="poem-content">风急天高猿啸哀，
+渚清沙白鸟飞回。
+无边落木萧萧下，
+不尽长江滚滚来。</div>
+                    <p class="poem-date">2023-07-25</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">我的收藏</h2>
+            <div class="collection-grid">
+                <div class="collection-card">
+                    <div class="collection-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h3 class="collection-title">唐诗精选</h3>
+                    <p class="collection-count">24首</p>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-icon">
+                        <i class="fas fa-feather-alt"></i>
+                    </div>
+                    <h3 class="collection-title">宋词鉴赏</h3>
+                    <p class="collection-count">18首</p>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3 class="collection-title">元曲集萃</h3>
+                    <p class="collection-count">12首</p>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-icon">
+                        <i class="fas fa-pen-fancy"></i>
+                    </div>
+                    <h3 class="collection-title">现代诗歌</h3>
+                    <p class="collection-count">32首</p>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-icon">
+                        <i class="fas fa-mountain"></i>
+                    </div>
+                    <h3 class="collection-title">山水田园</h3>
+                    <p class="collection-count">15首</p>
+                </div>
+                
+                <div class="collection-card">
+                    <div class="collection-icon">
+                        <i class="fas fa-wine-glass"></i>
+                    </div>
+                    <h3 class="collection-title">饮酒诗词</h3>
+                    <p class="collection-count">9首</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2 class="section-title">最近活动</h2>
+            <div class="activity-list">
+                <div class="poem-card">
+                    <h3 class="poem-title">读《赤壁赋》有感</h3>
+                    <p class="poem-author">读书笔记</p>
+                    <div class="poem-content">苏轼的《赤壁赋》不仅是文学史上的瑰宝，更是一种生活态度的体现。面对仕途坎坷，他选择在江面泛舟，与朋友共饮，借景抒情，表达了人生短暂与自然永恒的对比，以及豁达的生活态度。</div>
+                    <p class="poem-date">2023-10-28</p>
+                </div>
+                
+                <div class="poem-card">
+                    <h3 class="poem-title">《声声慢》赏析</h3>
+                    <p class="poem-author">鉴赏笔记</p>
+                    <div class="poem-content">李清照的《声声慢》以"寻寻觅觅"开篇，直接展现了词人内心的惆怅和不安。整首词通过凄清的秋景和孤独的心境，表达了对往昔欢乐时光的追忆和对现实凄凉处境的感伤。</div>
+                    <p class="poem-date">2023-10-20</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
